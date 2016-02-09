@@ -13,10 +13,133 @@ Textdateien benutzen Standardencodings (z.B. UTF-8).\\
 
 Vorteile:
 \begin{itemize}
-\item Von Menschen und verschiedenen Applikationen lsbar
+\item Von Menschen und verschiedenen Applikationen lesbar
 \item Einfacheres Parsen
 \end{itemize}
 Nachteile:
 \begin{itemize}
-\item VGrösser als Binärdatein
+\item Grösser als Binärdateien
+\end{itemize}
+
+\section{Metadaten}
+Metadaten sind Information über Informationen, wie z.B. Encoding, Version, Autor, Sprache, Repräsentation (Font, Farbe), Gerät.
+
+
+\section{SGML - Der Vorgänger von XML}
+
+Die Vorteile von Textdateien entstehen durch das Standardcharakterencoding.
+
+Menschen wollten 
+
+\section{XML - Extensible Markup Language}
+\begin{itemize}
+\item 1996 als Subset von SGML von W3C publiziert
+\item XML spezifiziert nur ..
+\end{itemize}
+
+\section{And what about Size and Bandwidth}
+Creators of XML: The power of metadata warrants bigger files (... terseness is not an aim ...).
+Es gibt verschiedene Möglichkeiten um die Grösse der Files zu reduzieren (z.B. Komprimierung).\\
+Das bedeutet allerdings einen Austausch gegen Lesbarkeit und "`Ease of use"'.\\
+Warum soll man nicht komprimierte Files speichern (z.B. ZIP)? Ein Bitfehler kann die ganze Scheisse zerstören.
+
+\section{More Advantages of XML}
+\begin{enumerate}
+\item Sehr strikte, aber simpel Formatierungsregeln
+\begin{itemize}
+\item blablub
+\end{itemize}
+\item Recreation of corrupted files
+
+\item Interoperabilität
+\begin{itemize}
+\item Verschiedene Parteien können einfach ein austauschbares Format definieren.
+\item XSD anstatt lange Fileformatspezifikation (wie z.B. bei einem Binärfile).
+\end{itemize}
+\item XMl ist sehr gut geeignet für Datenzentrische und Dokumentzentrische sadfalkja
+\end{enumerate}
+
+\section{However}
+SML ist eine Auszeichnungssprache und nur eine Auszeichnungssprache. Merken Sie sich diese Tatsache.
+Der XML-Hype ist so extrem geworden, dass viele Leute glauben, Xml könne sogar Kaffee kochen oder den Familienhund waschen.
+
+\section{Data-Centric Use of XML}
+
+Datenzentrische XNL Dokumente haben viele keleine Datenitems, die einer spezifischen Struktur folgen.
+
+\section{Document-Centric Use of XML}
+Diese Dokumente enthalten 
+
+\section{Hybride Verwendung von XML}
+
+\section{XML Anwednungen}
+\subsection{Webservices}
+Definition
+
+\section{Unterschied RPC und SOAP}
+Bei RPC sehen weder Nutzer noch Service je XML (XML wird nur für Transport verwendet).\\
+Bei SOAP haben User und Service Zugriff auf ein XML FIle
+
+
+\section{Equal vs Equivalent}
+Equal: Bit für Bit gleich\\
+Equivalent: Repräsentation im Memory nach Parsing ist gleich.
+
+
+
+
+
+
+
+
+
+
+
+\section{Control Questions A}
+\begin{enumerate}
+\item Name advantages and disadvantages of XML\\
+Advantages: Check auf Wohlgeformtheit und Validierung. Über Applikationsgrenzen hinweg benutzbar, Easy to define, human readable, easy parsing, data-centric AND document-centric usage. Disadvantages: Large overhead in comparison to JSON
+\item What is a markup language in general ?\\
+Bietet eine Syntax, um Metadaten vom tatsächlichen Inhalt zu trennen.
+\item Why is metadata so important that it could motivate the design and specification of a new markup language ?\\
+It is important, because it contains Information about the Information held in the document.
+\item Explain the difference between data and document-centric XML\\
+Data-centric means that it is well structured and has many small data items (Example: DB). Document-centric means that it contains large amounts of text and there are unstructured elements (Example: XHTML)
+\item Name five different application fields of XML in practice
+\begin{itemize}
+\item Config-Files
+\item Layouting
+\item Logging
+\item WSDL
+\item SOAP
+\item Webservices
+\item Data-Exchange (B2B, B2C)
+\end{itemize}
+\item In which field does XML apparently have the biggest success ?\\
+Business to Business and Business to Customer
+\item What are XML-RPC and SOAP, and how do they distinguish ?\\
+Remote Procedure Call: A Middleware packs and extracts the Method Call with its parameters into XML, sends it to the server and extracts it from XML when it calls the service method. You can say that in the case of an RPC call whether the client nor the server sees an XML document (only the middleware).
+
+In case of a SOAP-message (Called SOAP-Envelope) the server as well as the client interacts directly via XML-document.
+\item Which other XML concept is used for web services ?\\
+WSDL: Describes the functionality / ownership / location of a web service.
+\end{enumerate}
+
+\section{Control Questions B}
+\begin{itemize}
+\item Which information does the XML prolog contain ?\\
+Version, Encoding and standalone
+\item What are CDATA sections good for ?\\
+They are good so that the entity reference can be left beside.
+\item What is a processing instruction used for ?\\
+To inform the browser, that some special type of formatting has to be used ("`text/css"').
+\item When are two XML documents logically equivalent ?\\
+When the representation in the memory after parsing is the same.
+\item Which of the following statements are true ?
+\begin{itemize}
+\item Equivalent XML documents are equal.\\
+Not mandatory.
+\item Equal XML documents are equivalent.\\
+True
+\end{itemize}
 \end{itemize}
