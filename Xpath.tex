@@ -1,6 +1,31 @@
 \chapter{XPATH}
-\section{XPath Axes}
+\section{XML in Memory}
+XML is text-based but while in memory, is stored as a tree. There are different ways to access these trees:
+\begin{itemize}
+	\item DOM (document object model):
+	The default HTML-Version but if possible, other ways should be used.
+	\item XQuery and XPath data model (XDM):
+	More powerful than DOM, easier to access data as objects.
+	\item post-schema validation information set (PSVI):
+	XML Schema's own version.
+\end{itemize}
+
+\section{DOM}
+DOM contains of different nodes, the most important ones being document nodes, element nodes, attribute nodes and text nodes.
+DOM provides only a low level API to access its objects in the tree. DOM is known to be inefficient when compared to XPath and only offers basic object-oriented features.
+
+\section{XPath}
+XPath can be used to select and point into XML documents. There are API's for all major programming languages available.
+Usually, one XML-file and a XPath-expression are fed into a XPath engine which then returns a node list.
+\subsection{XPath Axes}
+An XPath axis is a direction and each / stands for a step you move along this axis. There are also other commands which are listed below:
 \includegraphics[width=\textwidth]{fig/XPathAxes.png}
+Further selection is possible using other XPath expressions:
+\begin{itemize}
+	\item text(): to access the text of the selected node
+	\item [@attribute]: applying a filter on the selection
+	\item [number]: returns the element at number
+\end{itemize}
 
 \section{Exercises 1}
 \begin{enumerate}
@@ -42,18 +67,33 @@ distinct-values(//bond)
 \end{lstlisting}
 \end{enumerate}
 
+\section{XPath variables and conditional queries}
+Variables can be configured using the prefix \$ and can be used as following:
+\begin{lstlisting}[language=XML]
+for $i in distinct-values(/descendant::bond)
+return concat($i, " played ", count(/bond_movies/movie[bond = $i]), " times.")
+\end{lstlisting}
+
+Conditional statements have to be implemented like this:
+\begin{lstlisting}[language=XML]
+if(count(/bond_movies/movie[regie = "John Glen"]) > 1)
+ then "There is more than one from this director"
+ else "There is exactly one movie from this director"
+\end{lstlisting}
+
+
 \section{Exercises 2}
 \begin{enumerate}
 \item Formulate an XPath query that produces the following output. (<<regie>> produced <<count()>> movies)
 \begin{lstlisting}[language=XML]
-for $i in distinct-values(/descendant::regie) 
+for $i in distinct-values(/descendant::regie)
 return concat($i, " produced ",
 count(/bond_movies/movie[regie = $i]), " movies.")
 \end{lstlisting}
 
 \item Modify that it shows only regisseurs with more than one movie produced
 \begin{lstlisting}[language=XML]
-for $i in distinct-values(/descendant::regie) 
+for $i in distinct-values(/descendant::regie)
 return if(count(/bond_movies/movie[regie = $i])>1) then
 concat($i, " produced ",
 count(/bond_movies/movie[regie = $i]), " movies.")
@@ -226,7 +266,7 @@ else()
 \item List all codes of countries with population less than Switzerland
 \begin{lstlisting}[language=XML]
 for $i in /descendant::name
-return if($i/../population/text() > //name[text() = "Switzerland"]/../population/text()) 
+return if($i/../population/text() > //name[text() = "Switzerland"]/../population/text())
 then
 $i/../@code
 else()
@@ -234,11 +274,11 @@ else()
 
 \item List all countries whose average life expectance between men and women does not differ by more than 4.5 years
 \begin{lstlisting}[language=XML]
-for $i in //name 
+for $i in //name
 return
 if(($i/../life_exp_men - $i/../life_exp_women) < 4.5
 and ($i/../life_exp_men - $i/../life_exp_women) > (-4.5))
-then 
+then
 $i/../name
 else ()
 \end{lstlisting}
@@ -251,13 +291,13 @@ else ()
 \item List all countries with less than 1.5M people under 15 years
 \begin{lstlisting}[language=XML]
 for $i in //population_under_15
-return 
+return
 if (($i/text() * $i/../population * 0.01)<1500000) then
 $i/../name
 else ()
 \end{lstlisting}
 
-\item Find all countries with at least 50% more young than old people
+\item Find all countries with at least 50\% more young than old people
 \begin{lstlisting}[language=XML]
 \end{lstlisting}
 
