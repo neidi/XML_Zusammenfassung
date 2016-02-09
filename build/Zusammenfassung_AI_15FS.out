@@ -1,0 +1,142 @@
+\BOOKMARK [0][-]{chapter.0}{Einf\374hrung}{}% 1
+\BOOKMARK [1][-]{section.0.1}{Definition Artificial Intelligence}{chapter.0}% 2
+\BOOKMARK [1][-]{section.0.2}{Symbolisch \046 Subsymbolische Repr\344sentationen}{chapter.0}% 3
+\BOOKMARK [1][-]{section.0.3}{Knowledge-Intensive vs Knowledge Sparse Methods}{chapter.0}% 4
+\BOOKMARK [0][-]{chapter.1}{Rationale Agenten}{}% 5
+\BOOKMARK [1][-]{section.1.1}{Eigenschaften Rationale Agenten}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.2}{Beispiele f\374r rationale Agenten}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.3}{Modellierung / Struktur}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.4}{Performance}{chapter.1}% 9
+\BOOKMARK [2][-]{subsection.1.4.1}{Definition}{section.1.4}% 10
+\BOOKMARK [1][-]{section.1.5}{Umgebungen}{chapter.1}% 11
+\BOOKMARK [1][-]{section.1.6}{Typen von Agenten}{chapter.1}% 12
+\BOOKMARK [2][-]{subsection.1.6.1}{Simple Reflex}{section.1.6}% 13
+\BOOKMARK [2][-]{subsection.1.6.2}{Model-based Reflex Agent}{section.1.6}% 14
+\BOOKMARK [2][-]{subsection.1.6.3}{Goal-Based}{section.1.6}% 15
+\BOOKMARK [2][-]{subsection.1.6.4}{Utility-Based}{section.1.6}% 16
+\BOOKMARK [2][-]{subsection.1.6.5}{Learning}{section.1.6}% 17
+\BOOKMARK [2][-]{subsection.1.6.6}{Lernfragen}{section.1.6}% 18
+\BOOKMARK [0][-]{chapter.2}{Suchalgorithmen}{}% 19
+\BOOKMARK [1][-]{section.2.1}{Systematische Suche}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.1.1}{Voraussetzungen f\374r eine Suche}{section.2.1}% 21
+\BOOKMARK [2][-]{subsection.2.1.2}{Begrifflichkeiten}{section.2.1}% 22
+\BOOKMARK [2][-]{subsection.2.1.3}{Beispielmodelle}{section.2.1}% 23
+\BOOKMARK [2][-]{subsection.2.1.4}{Suchbaum}{section.2.1}% 24
+\BOOKMARK [2][-]{subsection.2.1.5}{Suchraum}{section.2.1}% 25
+\BOOKMARK [2][-]{subsection.2.1.6}{Breadth-First Search \(BFS\)}{section.2.1}% 26
+\BOOKMARK [2][-]{subsection.2.1.7}{Depth-First Search \(DFS\)}{section.2.1}% 27
+\BOOKMARK [2][-]{subsection.2.1.8}{Depth-Limited Search \(DLS\)}{section.2.1}% 28
+\BOOKMARK [2][-]{subsection.2.1.9}{Iterative Deepening Search \(IDS\)}{section.2.1}% 29
+\BOOKMARK [2][-]{subsection.2.1.10}{Uniform Cost Search \(UCS\)}{section.2.1}% 30
+\BOOKMARK [2][-]{subsection.2.1.11}{Fragen}{section.2.1}% 31
+\BOOKMARK [1][-]{section.2.2}{Heuristic \(informed\) search}{chapter.2}% 32
+\BOOKMARK [2][-]{subsection.2.2.1}{Eigenschaften von h\(n\)}{section.2.2}% 33
+\BOOKMARK [2][-]{subsection.2.2.2}{Greedy Search}{section.2.2}% 34
+\BOOKMARK [2][-]{subsection.2.2.3}{A* Search}{section.2.2}% 35
+\BOOKMARK [2][-]{subsection.2.2.4}{Beam Search}{section.2.2}% 36
+\BOOKMARK [2][-]{subsection.2.2.5}{IDA*}{section.2.2}% 37
+\BOOKMARK [2][-]{subsection.2.2.6}{Branch and Bound}{section.2.2}% 38
+\BOOKMARK [2][-]{subsection.2.2.7}{Heuristiken}{section.2.2}% 39
+\BOOKMARK [2][-]{subsection.2.2.8}{Summary Questions}{section.2.2}% 40
+\BOOKMARK [1][-]{section.2.3}{Local Search}{chapter.2}% 41
+\BOOKMARK [2][-]{subsection.2.3.1}{Hillclimbing}{section.2.3}% 42
+\BOOKMARK [2][-]{subsection.2.3.2}{Random Restart}{section.2.3}% 43
+\BOOKMARK [2][-]{subsection.2.3.3}{Random Walk}{section.2.3}% 44
+\BOOKMARK [2][-]{subsection.2.3.4}{Tabu Search}{section.2.3}% 45
+\BOOKMARK [2][-]{subsection.2.3.5}{Simulated Annealing}{section.2.3}% 46
+\BOOKMARK [2][-]{subsection.2.3.6}{Genetische Algorithmen}{section.2.3}% 47
+\BOOKMARK [2][-]{subsection.2.3.7}{Ant Colony Optimization}{section.2.3}% 48
+\BOOKMARK [2][-]{subsection.2.3.8}{Summary Questions}{section.2.3}% 49
+\BOOKMARK [0][-]{chapter.3}{Game Theory - Gleichzeitige Spiele}{}% 50
+\BOOKMARK [1][-]{section.3.1}{Rationale Entscheidungen}{chapter.3}% 51
+\BOOKMARK [1][-]{section.3.2}{Definition gleichzeitiges Spiel}{chapter.3}% 52
+\BOOKMARK [2][-]{subsection.3.2.1}{Action Profile}{section.3.2}% 53
+\BOOKMARK [2][-]{subsection.3.2.2}{Gefangenendilemma}{section.3.2}% 54
+\BOOKMARK [1][-]{section.3.3}{Best Response Function}{chapter.3}% 55
+\BOOKMARK [1][-]{section.3.4}{Dominante \046 Dominierte Strategien}{chapter.3}% 56
+\BOOKMARK [2][-]{subsection.3.4.1}{Dominante Strategie}{section.3.4}% 57
+\BOOKMARK [2][-]{subsection.3.4.2}{Dominierte Strategie}{section.3.4}% 58
+\BOOKMARK [1][-]{section.3.5}{Pure Strategy Nash Equilibrium}{chapter.3}% 59
+\BOOKMARK [2][-]{subsection.3.5.1}{Beispiel f\374r mehrere Nash Equilibrias}{section.3.5}% 60
+\BOOKMARK [2][-]{subsection.3.5.2}{Beispiel f\374r kein Nash Equilibrium}{section.3.5}% 61
+\BOOKMARK [2][-]{subsection.3.5.3}{Nash Equilibrium vs Pareto Optimal}{section.3.5}% 62
+\BOOKMARK [2][-]{subsection.3.5.4}{Mixed Strategy Nash Equilibrium}{section.3.5}% 63
+\BOOKMARK [2][-]{subsection.3.5.5}{Sequential Game}{section.3.5}% 64
+\BOOKMARK [0][-]{chapter.4}{Problemkomplexit\344t}{}% 65
+\BOOKMARK [1][-]{section.4.1}{Einleitung}{chapter.4}% 66
+\BOOKMARK [2][-]{subsection.4.1.1}{Entscheidungsprobleme}{section.4.1}% 67
+\BOOKMARK [1][-]{section.4.2}{Turing Maschine}{chapter.4}% 68
+\BOOKMARK [2][-]{subsection.4.2.1}{Deterministic Turing Maschine \(DTM\)}{section.4.2}% 69
+\BOOKMARK [2][-]{subsection.4.2.2}{Non-Deterministic Turing Maschine \(NTM\)}{section.4.2}% 70
+\BOOKMARK [1][-]{section.4.3}{NP Probleme}{chapter.4}% 71
+\BOOKMARK [2][-]{subsection.4.3.1}{Beispiel}{section.4.3}% 72
+\BOOKMARK [2][-]{subsection.4.3.2}{Definition}{section.4.3}% 73
+\BOOKMARK [1][-]{section.4.4}{P = NP}{chapter.4}% 74
+\BOOKMARK [2][-]{subsection.4.4.1}{NP Schwierig}{section.4.4}% 75
+\BOOKMARK [2][-]{subsection.4.4.2}{NP Komplett}{section.4.4}% 76
+\BOOKMARK [2][-]{subsection.4.4.3}{Problemreduzierung}{section.4.4}% 77
+\BOOKMARK [1][-]{section.4.5}{Satisfiability Problem}{chapter.4}% 78
+\BOOKMARK [1][-]{section.4.6}{Andere Problem-Mengen}{chapter.4}% 79
+\BOOKMARK [0][-]{chapter.5}{Constraint Programming}{}% 80
+\BOOKMARK [1][-]{section.5.1}{Constraint vs optimization problems}{chapter.5}% 81
+\BOOKMARK [2][-]{subsection.5.1.1}{Constraint Problem \(CP\)}{section.5.1}% 82
+\BOOKMARK [2][-]{subsection.5.1.2}{Constraint optimization problem \(OP\)}{section.5.1}% 83
+\BOOKMARK [2][-]{subsection.5.1.3}{Beispiel Grocery Store}{section.5.1}% 84
+\BOOKMARK [2][-]{subsection.5.1.4}{Beispiel SEND + MORE = MONEY}{section.5.1}% 85
+\BOOKMARK [2][-]{subsection.5.1.5}{Global Constraints}{section.5.1}% 86
+\BOOKMARK [2][-]{subsection.5.1.6}{Deterministic Finite Automaton - DFA}{section.5.1}% 87
+\BOOKMARK [1][-]{section.5.2}{Algorithmen}{chapter.5}% 88
+\BOOKMARK [2][-]{subsection.5.2.1}{Implementation einer AllDifferent Constraint f\374r ein Sudoku}{section.5.2}% 89
+\BOOKMARK [2][-]{subsection.5.2.2}{The human approach vs Backtrack search}{section.5.2}% 90
+\BOOKMARK [2][-]{subsection.5.2.3}{Advantages \046 Disadvantages of Backtrack Search}{section.5.2}% 91
+\BOOKMARK [2][-]{subsection.5.2.4}{Forward Checking - What humans do}{section.5.2}% 92
+\BOOKMARK [2][-]{subsection.5.2.5}{Bounds consistency}{section.5.2}% 93
+\BOOKMARK [2][-]{subsection.5.2.6}{Domain Consistency}{section.5.2}% 94
+\BOOKMARK [2][-]{subsection.5.2.7}{Optimization Problems}{section.5.2}% 95
+\BOOKMARK [0][-]{chapter.6}{Bayessche Netze - Reasoning under Uncertainty}{}% 96
+\BOOKMARK [1][-]{section.6.1}{Einf\374hrung}{chapter.6}% 97
+\BOOKMARK [1][-]{section.6.2}{Begriffe}{chapter.6}% 98
+\BOOKMARK [1][-]{section.6.3}{From Real World to Random Variables}{chapter.6}% 99
+\BOOKMARK [1][-]{section.6.4}{Global- und Marginalverteilung}{chapter.6}% 100
+\BOOKMARK [1][-]{section.6.5}{Bayes Theorem}{chapter.6}% 101
+\BOOKMARK [1][-]{section.6.6}{Causal Relations and Causal Networks}{chapter.6}% 102
+\BOOKMARK [2][-]{subsection.6.6.1}{Conditional Dependency Relations}{section.6.6}% 103
+\BOOKMARK [2][-]{subsection.6.6.2}{Factorization}{section.6.6}% 104
+\BOOKMARK [1][-]{section.6.7}{Fusion algorithm}{chapter.6}% 105
+\BOOKMARK [2][-]{subsection.6.7.1}{Marginalization}{section.6.7}% 106
+\BOOKMARK [2][-]{subsection.6.7.2}{Back substitution}{section.6.7}% 107
+\BOOKMARK [0][-]{chapter.7}{Markovketten - Reasoning under uncertainty part 4}{}% 108
+\BOOKMARK [1][-]{section.7.1}{Unterschied Markovketten und Bayes'sche Netze}{chapter.7}% 109
+\BOOKMARK [1][-]{section.7.2}{Erstes Beispiel: Marktanalyse}{chapter.7}% 110
+\BOOKMARK [2][-]{subsection.7.2.1}{Vorgehen}{section.7.2}% 111
+\BOOKMARK [2][-]{subsection.7.2.2}{Transitionsmatrix}{section.7.2}% 112
+\BOOKMARK [1][-]{section.7.3}{Stationary Distribution}{chapter.7}% 113
+\BOOKMARK [2][-]{subsection.7.3.1}{Berechnung}{section.7.3}% 114
+\BOOKMARK [1][-]{section.7.4}{Absorbing and Transient states}{chapter.7}% 115
+\BOOKMARK [2][-]{subsection.7.4.1}{In the long run}{section.7.4}% 116
+\BOOKMARK [2][-]{subsection.7.4.2}{Expected number of transitions}{section.7.4}% 117
+\BOOKMARK [0][-]{chapter.8}{Statistische Evaluation}{}% 118
+\BOOKMARK [1][-]{section.8.1}{Lage- u. Streumasse, H\344ufigkeitsverteilung}{chapter.8}% 119
+\BOOKMARK [2][-]{subsection.8.1.1}{arithm. Mittelwert}{section.8.1}% 120
+\BOOKMARK [2][-]{subsection.8.1.2}{Median}{section.8.1}% 121
+\BOOKMARK [2][-]{subsection.8.1.3}{Varianz}{section.8.1}% 122
+\BOOKMARK [2][-]{subsection.8.1.4}{Standardabweichung}{section.8.1}% 123
+\BOOKMARK [1][-]{section.8.2}{Diskrete Verteilung}{chapter.8}% 124
+\BOOKMARK [2][-]{subsection.8.2.1}{Poisson Verteilung}{section.8.2}% 125
+\BOOKMARK [0][-]{chapter.9}{Neuronale Netze}{}% 126
+\BOOKMARK [1][-]{section.9.1}{Motivation}{chapter.9}% 127
+\BOOKMARK [1][-]{section.9.2}{Abstraktion eines Neurons}{chapter.9}% 128
+\BOOKMARK [2][-]{subsection.9.2.1}{Net-Input}{section.9.2}% 129
+\BOOKMARK [2][-]{subsection.9.2.2}{Aktivierungsfunktion}{section.9.2}% 130
+\BOOKMARK [1][-]{section.9.3}{Architektur neuronaler Netze}{chapter.9}% 131
+\BOOKMARK [2][-]{subsection.9.3.1}{Beschreibung durch Matrix}{section.9.3}% 132
+\BOOKMARK [1][-]{section.9.4}{Single Layer Feedforward Netze}{chapter.9}% 133
+\BOOKMARK [2][-]{subsection.9.4.1}{Wie bestimmt man die Gewichte}{section.9.4}% 134
+\BOOKMARK [1][-]{section.9.5}{Multi Layer Feedforward Netze}{chapter.9}% 135
+\BOOKMARK [2][-]{subsection.9.5.1}{Mehrstufige Perzeptrons \(Backpropagation Netze\)}{section.9.5}% 136
+\BOOKMARK [0][-]{chapter.10}{Linear Regression}{}% 137
+\BOOKMARK [1][-]{section.10.1}{Geradengleichung}{chapter.10}% 138
+\BOOKMARK [1][-]{section.10.2}{Confidence Interval}{chapter.10}% 139
+\BOOKMARK [1][-]{section.10.3}{Correlation Coefficient}{chapter.10}% 140
+\BOOKMARK [0][-]{chapter.11}{Multiple Regression}{}% 141
+\BOOKMARK [1][-]{section.11.1}{Geradengleichung}{chapter.11}% 142
