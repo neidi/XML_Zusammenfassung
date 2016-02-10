@@ -264,7 +264,10 @@ Folgen gleich nach dem Prolog:\\
 \code{<?xml-stylesheet type="'text/css"' href="'style.css"' ?>}\\\\
 Sie werden von der öffnenden Applikation benutzt, um ihr Processing Instructions zu geben.
 
-asdfalsjfaslö
+\section{Well Formed XML and  Error Handling}
+Ein XML ist "`wohlgeformt"' (well-formed), wenn es die obigen Regeln erfüllt. Trotzdem interpretieren Browser auch nicht-wohlgeformten HTML Code und versuchen zu interpretieren, was der Programmierer gemeint hat.
+
+XML an sich allerdings wäre genau so strikt, wie jede andere Programmiersprache. Ein XML Prozessor wird bei in der Spezifikation als "`fatal"' definierten Errors die Ausführung stoppen (Ein Browser ist \textbf{kein} XML Prozessor, er lässt also teilweise auch richtig übles Zeug zu).
 
 \section{Equal vs Equivalent}
 Equal: Bit für Bit gleich\\
