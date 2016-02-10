@@ -1,0 +1,185 @@
+\chapter{XSLT}
+\section{Intro}
+XSLT transforms documents from a source format to a target format. The source format must be an XML language, while the target format can be anything
+However, in most cases the transformation is between XML languages. Typical target languages are XHTML, SVG or FO\\
+XSLT is a declarative-functional programming language, i.e. you specify the result rather than how it is obtained.
+\section{XSLT Basics and Conflicts}
+XSLT-Stylesheets usually contains of templates. Each template specifies an XPath-like expression.
+The following example has two different templates, one matching the root element ('/') ond one matching the movie nodes ('movie').
+\begin{lstlisting}[language=XML]
+<?xml version="1.0" ?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+<h1>This is a plain list of James Bond movie titles</h1> <ul>
+          <xsl:apply-templates />
+        </ul>
+      </body>
+</html>
+  </xsl:template>
+  <xsl:template match="movie">
+<li>
+      <xsl:value-of select="title"/>
+</li>
+  </xsl:template>
+</xsl:stylesheet>
+\end{lstlisting}
+The XSLT-processort starts from the root of the source tree and finds the template which matches best. If more than one template matches,
+a conflict resolution algorithm is called to determine the right template. Since the results vary from implementation to implementation,
+ambigious templates should be avoided.\\
+Rule:\\
+ \green{\textbf{It is an error if this leaves more than one matching template rule.
+An XSLT processor may signal the error; if it does not signal the error, it
+must recover by choosing, from amongst the matching template rules that are left, the one that occurs last in the stylesheet.}}
+\\
+Rule:\\
+\green{\textbf{More precise (restricting) templates are always executed first.}}
+
+\section{Defining templates}
+The first template should always start at the root element.
+Each template has its context and all data requests are executed with respect to the context. Here, the context is \code{<movie>}
+\begin{lstlisting}[language=XML]
+<xsl:template match="movie">
+  <li>
+    <xsl:value-of select="title"/>
+  </li>
+</xsl:template>
+\end{lstlisting}
+Delegation to other template can be done using the \code{<apply-templates>} element which uses a select attribute
+ to choose the nodes to process. The default value is the XPath expression node(). \\
+ \begin{lstlisting}[language=XML]
+<?xml version="1.0" ?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:template match="/">
+  <html>
+  <h1>This is a plain list of James Bond movie titles</h1> <ul>
+    <xsl:apply-templates select="bond_movies/movie/title" /> </ul>
+  </html>
+</xsl:template>
+<xsl:template match="title">
+  <li>
+    <xsl:value-of select="text()"/>
+  </li>
+</xsl:template>
+</xsl:stylesheet>
+\end{lstlisting}
+\section{Push vs. Pull processing}
+Using a for-each loop as in the example below, is called pull-processing where using templates is called push-processing.
+Elements can be pushed to a template or pulled to be used immediately. Templates are more like methods in other programming languages.
+\begin{lstlisting}[language=XML]
+<xsl:for-each select="bond_movies/movie">
+    <li>
+      <xsl:value-of select="title"/>
+    </li>
+</xsl:for-each>
+\end{lstlisting}
+Templates are better because:
+\begin{itemize}
+  \item Templates are more flexible and easier to maintain.
+  \item Templates can be shared between stylesheets (see later).
+  \item Templates can be overwritten (see later).
+  \item Templates enable modular code.
+\end{itemize}
+
+\section {Conditional Logic}
+There is an if statement (without else) which can be used as follows:
+\begin{lstlisting}[language=XML]
+<xsl:template match="movie">
+  <xsl:if test="duration &gt; 130">
+    <li style="color:red"> <xsl:value-of select="title"/>
+    </li>
+  </xsl:if>
+  <xsl:if test="duration &lt;= 130">
+    <li>
+      <xsl:value-of select="title"/>
+    </li>
+  </xsl:if>
+</xsl:template>
+\end{lstlisting}
+And there's the choose-statement for multiple conditions:
+\begin{lstlisting}[language=XML]
+<xsl:template match="movie">
+  <xsl:choose>
+    <xsl:when test="duration &gt; 140">
+      <li style="color:red"><xsl:value-of select="title"/></li>
+    </xsl:when>
+    <xsl:when test="duration &gt; 120">
+      <li style="color:orange"><xsl:value-of select="title"/></li>
+    </xsl:when>
+    <xsl:otherwise>
+      <li style="color:green"><xsl:value-of select="title"/></li>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+\end{lstlisting}
+
+\section{Producing XHTML}
+XHTML requires a default namespace in the <html> element. This can be achieved by adding the XHTML namespace as
+default namespace to the XSLT file. It will then be carried over to the output document. Like this:
+\begin{lstlisting}[language=XML]
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" >
+\end{lstlisting}
+Because the XHTML-Namespace has to be the default namespace, all the other namespaces have to be imported using prefixes.\\
+XHTML is still validated against DTDs, so we may want to refer to the right DTD in our output document. Like this:
+\begin{lstlisting}[language=XML]
+<xsl:output doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
+\end{lstlisting}
+
+
+\section{Sorting elements}
+<sort> can be used as a child of <apply-templates> or <for-each>.
+It has three attributes: select, data-type and order. The possible values for order are ascending or descending. Here's an example:
+\begin{lstlisting}[language=XML]
+<xsl:apply-templates select="movie[starts-with(bond/text(), 'Pierce')]">
+  <xsl:sort select="bond_girl" data-type="text" order="descending"/>
+</xsl:apply-templates>
+\end{lstlisting}
+
+\section{Named templates}
+Instead of (or in addition to) using the match attribute we can call templates by name. This has the following advantages:\\
+1. We can split up large templates and reuse elsewhere\\
+2. We can pass parameters to the template. Inside the template,
+parameter values are accessed by \code{\$para\_name} like this:
+\begin{lstlisting}[language=XML]
+<xsl:template name="header">
+  <xsl:param name="color" />
+  <tr style="background-color:{$color}">
+      <th>Title</th>
+      <th>Bond Actor</th>
+      <th>Bond Girl</th>
+      <th>Producer</th>
+      <th>Year</th>
+      <th>Length</th>
+  </tr>
+</xsl:template>
+\end{lstlisting}
+And then be called using the name with a parameter: (name of the parameters are global)
+\begin{lstlisting}[language=XML]
+<xsl:call-template name="header">
+  <xsl:with-param name="color">#990066</xsl:with-param>
+</xsl:call-template>
+\end{lstlisting}
+\red{\textbf{Use named templates if parameter values remain constant, use matching when you need to use data out of the XML.}}
+
+\section{More XSLT features}
+\begin{itemize}
+  \item Variables can be defined as follows:\\
+  \code{<xsl:variable name="version" >1.0beta</xsl:variable>}\\
+  However, variables can be initialized only once in their lifetime.
+  \item \code{<copy-of select="path" />}\\ Copies content from the source to the output tree,
+   i.e. it copies the specified node with its children and attributes.
+   This is very handy if you want to transform a document into a modified form of itself.
+   \item \code{<import href="path" />}\\ Thi can be used to include another stylesheet by just copy- pasting its content to the current file.
+    This enables to build modules of reusable code. In case of conflicts, the imported templates obtain lower priority.
+    \item Getting Content from other XML Files:\\
+    We can access information in other XML files using the function document(url). The specification allows any URL but processors
+generally support only paths (see below), HTTP and HTTPS.
+In bond\_movies.xml each movie has an attribute id. Imagine now another file bond\_movies\_media.xml that stores poster images for each movie referenced by ID.
+We can get the poster for ID \_02 as follows:
+\begin{lstlisting}[language=XML]
+  <img src="{document('bond_movies_media.xml')/ bond_movies/movie[@number='_02']/poster/@href}"
+  alt="{document('bond_movies_media.xml')/ bond_movies/movie[@number='_02']/title}"/>
+\end{lstlisting}
+
+\end{itemize}
