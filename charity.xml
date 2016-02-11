@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<charity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="charity.xsd">
+	<donator>
+		<desc>Privatperson</desc>
+		<donation year="2013" amount="100.00">Überschwemmung Europa</donation>
+		<donation year="2011" amount="50.00">Hungersnot Ostafrika</donation>
+		<donation year="2005" amount="50.00">Erdbeben Kaschmir</donation>
+	</donator>
+	<donator>
+		<desc>Gruppe</desc>
+		<donation year="2013" amount="100.00">Syrien Konflikt</donation>
+		<donation year="2010" amount="250.00">Erdbeben Haiti</donation>
+		<donation year="2007" amount="100.00">Waldbrände Griechenland</donation>
+		<donation year="1999" amount="150.00">Orkan Lothar</donation>
+	</donator>
+	<donator>
+		<desc>Privatperson</desc>
+		<donation year="2013" amount="50.00">Überschwemmung Europa</donation>
+		<donation year="2012" amount="50.00">Jeder Rappen zählt</donation>
+		<donation year="2011" amount="50.00">Hungersnot Ostafrika</donation>
+		<donation year="2011" amount="50.00">Erdbeben Japan</donation>
+	</donator>
+	<donator>
+		<desc>Firma</desc>
+		<donation year="2012" amount="1000.00">Jeder Rappen zählt</donation>
+		<donation year="1999" amount="1000.00">Orkan Lothar</donation>
+	</donator>
+	<donator>
+		<desc>Privatperson</desc>
+		<donation year="2013" amount="150.00">Überschwemmung Europa</donation>
+		<donation year="2012" amount="50.00">Jeder Rappen zählt</donation>
+		<donation year="2005" amount="50.00">Erdbeben Kaschmir</donation>
+		<donation year="1999" amount="500.00">Orkan Lothar</donation>
+	</donator>
+	<donator>
+		<desc>Firma</desc>
+		<donation year="2013" amount="500.00">Jeder Rappen zählt</donation>
+		<donation year="2012" amount="500.00">Jeder Rappen zählt</donation>
+		<donation year="2011" amount="500.00">Jeder Rappen zählt</donation>
+		<donation year="2010" amount="500.00">Jeder Rappen zählt</donation>
+		<donation year="2009" amount="500.00">Jeder Rappen zählt</donation>
+	</donator>
+	<donator>
+		<desc>Privatperson</desc>
+		<donation year="2013" amount="30.00">Überschwemmung Europa</donation>
+		<donation year="2013" amount="30.00">Jeder Rappen zählt</donation>
+		<donation year="2013" amount="30.00">Syrien Konflikt</donation>
+	</donator>
+	<donator>
+		<desc>Privatperson</desc>
+		<donation year="1999" amount="5000.00">Orkan Lothar</donation>
+	</donator>
+</charity>

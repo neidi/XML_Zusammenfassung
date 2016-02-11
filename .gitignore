@@ -9,3 +9,5 @@ build/XML_Zusammenfassung_HS15.aux
 *.out
 *.gz
 *.dvi
+
+.idea/
