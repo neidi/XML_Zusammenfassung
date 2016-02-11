@@ -62,3 +62,50 @@ returns:
 <Vorlesung><Titel>Logik</Titel><SWS>4</SWS></Vorlesung>
 <Vorlesung><Titel>Maeeutik</Titel><SWS>2</SWS></Vorlesung>
 \end{lstlisting}
+Beispiel 2:
+\begin{lstlisting}[language=XML]
+  for $p in //ProfessorIn
+  let $l := sum($p/Vorlesungen/Vorlesung/SWS)
+  where $l > 0 order by $l
+  return  <ProfessorIn>{$p/Name} <Lehre> {$l} </Lehre></ProfessorIn>
+\end{lstlisting}
+returns:
+\begin{lstlisting}[language=XML]
+For each ProfessorIn-Element the name and the sum of their teaching- hours (Semester-Wochen-Stunden).
+ProfessorIn-Elements that do not teach are excluded. Teaching-hours is the order-criteria.
+\end{lstlisting}
+
+\section{Exercise 9}
+List all countries whose name starts with P and which have a population greater than 10
+Million, using the following XQuery:
+\begin{lstlisting}[language=XML]
+  for $country in //country[matches(@name,'^P','i')and
+  @population>10000000]
+  let $province := count($country/province)return
+  <country><name>{$country/@name}</name><provinces>{$province}
+  </provinces></country>
+\end{lstlisting}
+Returns:
+\begin{lstlisting}[language=XML]
+  <country>
+    <name name="Poland"/>
+    <provinces>49</provinces>
+  </country>
+  <country>
+    <name name="Pakistan"/>
+    <provinces>0</provinces>
+  </country>
+  <country>
+    <name name="Philippines"/>
+    <provinces>0</provinces>
+  </country>
+  <country>
+    <name name="Peru"/>
+    <provinces>25</provinces>
+  </country>
+\end{lstlisting}
+How many such countries do exist? What is the corresponding XQuery (or XPath) Expression?
+\begin{lstlisting}[language=XML]
+  for $counting in count(//country[matches(@name,'^P','i')and @population>10000000])
+  return $counting
+\end{lstlisting}
