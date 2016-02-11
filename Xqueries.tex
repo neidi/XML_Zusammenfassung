@@ -1,0 +1,216 @@
+\chapter{XQueries}
+\section{Native XML Databases}
+A Native XML Database is a computer system that holds the following properties:
+\begin{itemize}
+  \item It is a database, i.e. a software component integrating both (1) a structured collection of data and (2) access programs to define, manipulate and query that data
+  \item Data are stored in documents. It is therefore a special kind of document store.
+  \item Data in the documents comply with the XML standard.
+  \item XML technologies such as XPath, Xquery or XSL/T can be applied for querying and manipulating data in the database.
+\end{itemize}
+
+
+\section{XML-DB vs SQL-DB}
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison XML vs. SQL}
+\begin{tabular}{ll}
+\textbf{XML DB}         & \textbf{SQL DB}        \\ \cline{1-2}
+\multicolumn{1}{|l|}{Hierarchical} & \multicolumn{1}{l|}{Relational} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Fast access of nested structures} & \multicolumn{1}{l|}{Slow access of nested structures (join)} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Works well for aggregating data (1:n)} & \multicolumn{1}{l|}{Works well for interrelated data (n:m) } \\ \cline{1-2}
+\multicolumn{1}{|l|}{Working with files and XML-documents directly } & \multicolumn{1}{l|}{Working with abstract tables and tuples} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Focus on structure (XSD, DTD)} & \multicolumn{1}{l|}{Focus on consistency (ACID)} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Ideal for web applications} & \multicolumn{1}{l|}{Ideal for banking applications} \\ \cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\section{XQuery}
+XQuery is a language for searching and manipulating data in XML Trees (XDM)\\
+XQuery expressions can access data over multiple documents and databases, and extract results very efficiently.\\
+XQuery is a FLWOR-expression (pronounced flower), with main syntax elements:\\FOR-LET-WHERE-ORDER-RETURN\\
+\\
+XQuery is a true superset of XPath, meaning that every single valid
+XPath expression is also a valid XQuery expression.\\
+Xquery is an extension to Xpath, allowing for nested loops with SQL- like elements such as where statements and order-by clauses.\\
+XPath lets you find XML elements by path expressions.\\
+XQuery, however, adds a couple of additional powerful constructs that allow you to do much more and let you manipulate or construct entire XML documents on the fly.\\
+  => return clause is essential for this feature, where new and arbitrary XML can be added and combined with results from the query
+
+\section{FLWOR and examples}
+
+\begin{itemize}
+  \item for: define variables (start name with \$) as FLWOR-Expression
+(normally just an Xpath-expression)
+  \item let: new variables for some (aggregated) subsets of the for-variables
+  \item where: some restrictions on/ between the for-variables and XPath- expressions starting from the for-variables
+  \item order: some variable with Xpath-expression (must be a singleton!)
+  \item return: a valid XML-structure constructed of constants and Xpath- expressions starting from variables. If constants and expressions are mixed: expressions must be set in curly brackets ({}) – otherwise they are not evaluated, but also taken as (constant) strings!!
+\end{itemize}
+Beispiel 1:
+\begin{lstlisting}[language=XML]
+for $v in //Vorlesung
+let $orderVar := $v/SWS
+where $v/../..[Name="Sokrates"]
+order by $orderVar descending
+return <Vorlesung>{$v/Titel}{$v/SWS}</Vorlesung>
+\end{lstlisting}
+returns:
+\begin{lstlisting}[language=XML]
+<Vorlesung><Titel>Ethik</Titel> <SWS>4</SWS></Vorlesung>
+<Vorlesung><Titel>Logik</Titel><SWS>4</SWS></Vorlesung>
+<Vorlesung><Titel>Maeeutik</Titel><SWS>2</SWS></Vorlesung>
+\end{lstlisting}
+Beispiel 2:
+\begin{lstlisting}[language=XML]
+  for $p in //ProfessorIn
+  let $l := sum($p/Vorlesungen/Vorlesung/SWS)
+  where $l > 0 order by $l
+  return  <ProfessorIn>{$p/Name} <Lehre> {$l} </Lehre></ProfessorIn>
+\end{lstlisting}
+returns:
+\begin{lstlisting}[language=XML]
+For each ProfessorIn-Element the name and the sum of their teaching- hours (Semester-Wochen-Stunden).
+ProfessorIn-Elements that do not teach are excluded. Teaching-hours is the order-criteria.
+\end{lstlisting}
+
+\section{Exercise 9}
+List all countries whose name starts with P and which have a population greater than 10
+Million, using the following XQuery:
+\begin{lstlisting}[language=XML]
+  for $country in //country[matches(@name,'^P','i')and
+  @population>10000000]
+  let $province := count($country/province)return
+  <country><name>{$country/@name}</name><provinces>{$province}
+  </provinces></country>
+\end{lstlisting}
+Returns:
+\begin{lstlisting}[language=XML]
+  <country>
+    <name name="Poland"/>
+    <provinces>49</provinces>
+  </country>
+  <country>
+    <name name="Pakistan"/>
+    <provinces>0</provinces>
+  </country>
+  <country>
+    <name name="Philippines"/>
+    <provinces>0</provinces>
+  </country>
+  <country>
+    <name name="Peru"/>
+    <provinces>25</provinces>
+  </country>
+\end{lstlisting}
+How many such countries do exist? What is the corresponding XQuery (or XPath) Expression?
+\begin{lstlisting}[language=XML]
+  for $counting in count(//country[matches(@name,'^P','i')and @population>10000000])
+  return $counting
+\end{lstlisting}
+
+
+1. In	which	room	is	Prof.	Curie?
+\begin{lstlisting}[language=XML]
+  for $r in //ProfessorIn
+  where $r/Name = "Curie"
+  return $r/Raum
+\end{lstlisting}
+
+2. Return	number	and	title	of	all	courses.
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung
+  return <Vorlesung> {$v/@VorlNr} {$v/Titel} </Vorlesung>
+\end{lstlisting}
+
+3. Return	title	and	number	of	credits	(SWS)	of	all	courses,	orderd	by	the	number	of	credits.
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung
+  order by ($v/SWS)[1] descending
+  return <Vorlesung> {$v/Titel} {$v/SWS} </Vorlesung>
+\end{lstlisting}
+
+4. Return	a	list	of	faculties	together	with	the	professors	that	belong	to	them.
+\begin{lstlisting}[language=XML]
+  for $f in //Fakultaet
+  return <Fakultaet> {$f/FakName} <Professoren> {$f/ProfessorIn/Name} </Professoren> </Fakultaet>
+\end{lstlisting}
+
+5. Return	a	list	of	the	titles	of	all	courses	of	the	professors	in	the	faculty	of	theology.
+\begin{lstlisting}[language=XML]
+  for $f in //Fakultaet
+  where $f/FakName = "Theologie"
+  return <Vorlesungen> {$f/ProfessorIn/Vorlesungen/Vorlesung/Titel} </Vorlesungen>
+\end{lstlisting}
+
+6. In	which	faculty	is	the	professor	in	room	309?
+\begin{lstlisting}[language=XML]
+  for $f in /Universitaet/Fakultaeten/Fakultaet,
+  $p in $f/ProfessorIn
+  where $p/Raum = "309"
+  return <Professor_in_Raum_309> {$p/Name} {$f/FakName} </Professor_in_Raum_309>
+\end{lstlisting}
+
+7. Return	a	list	of	all	professors	with	rank	C3.
+\begin{lstlisting}[language=XML]
+  for $p in /Universitaet/Fakultaeten/Fakultaet/ProfessorIn
+  where $p/Rang = "C3"
+  return <Professor_mit_Rang_C3> {$p/Name} </Professor_mit_Rang_C3>
+\end{lstlisting}
+
+8. Return	the	names	of the	professors	who	teach	a	course	that	is	attended	by	student	„Carnap“
+\begin{lstlisting}[language=XML]
+  for $p in //Vorlesung,$s in //Student[Name="Carnap"]
+  where contains($s/@hoert, $p/@VorlNr)
+  return <Professoren_von_Carnap> {$p/../../Name} </Professoren_von_Carnap>
+
+  ohne	Duplikate:
+  for $n in distinct-values(for $p in //Vorlesung,$s in //Student
+  where $s/Name = "Carnap" and contains($s/@hoert, $p/@VorlNr)
+  return $p/../../Name )
+  return <Professoren_von_Carnap>{$n} </Professoren_von_Carnap>
+\end{lstlisting}
+
+9. Return	the	numbers	of	all	courses	that	are	attended	by	Student	„29120“
+\begin{lstlisting}[language=XML]
+  for $s in //Student
+  where $s/@MatrNr=29120
+  return <Student> {$s/@hoert} {$s/Name} </Student>
+\end{lstlisting}
+
+10. Return	the	names	of	all	students	who	attend	a	course	taught	by “Russel”
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung,
+  $s in //Student
+  where contains ($s/@hoert, $v/@VorlNr)
+  and $v/../../Name = "Russel"
+  return <Hoerer> {$s/Name} </Hoerer>
+\end{lstlisting}
+
+11. Return	the	names	of	all	Professors	together	with	the	names	of	the	students	that	attend	one
+of	their	courses
+\begin{lstlisting}[language=XML]
+  for $p in //ProfessorIn,
+  $v in $p/Vorlesungen/Vorlesung,
+  $s in //Student
+  where contains($s/@hoert, $v/@VorlNr)
+  return  <ProfessorIn>  {$p/Name}  <Student>  {$s/Name}  </Student>  </ProfessorIn>
+\end{lstlisting}
+
+12. Return	the	names	of	all	students	together	with	a	list	of	the	courses	they	attend
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung,
+  $s in //Student
+  where contains($s/@hoert, $v/@VorlNr)
+  return <Student> {$s/Name} <Vorlesung> {$v/Titel} </Vorlesung> </Student>
+\end{lstlisting}
+
+13. Which	students	attend	the	course	“Grundzüge”	?
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung,
+  $s in //Student
+  where contains($s/@hoert, $v/@VorlNr)
+  and $v/Titel = "Grundzuege"
+  return <Student> {$s/Name} </Student>
+\end{lstlisting}
