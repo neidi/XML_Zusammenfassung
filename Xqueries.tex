@@ -1,0 +1,64 @@
+\chapter{XQueries}
+\section{Native XML Databases}
+A Native XML Database is a computer system that holds the following properties:
+\begin{itemize}
+  \item It is a database, i.e. a software component integrating both (1) a structured collection of data and (2) access programs to define, manipulate and query that data
+  \item Data are stored in documents. It is therefore a special kind of document store.
+  \item Data in the documents comply with the XML standard.
+  \item XML technologies such as XPath, Xquery or XSL/T can be applied for querying and manipulating data in the database.
+\end{itemize}
+
+
+\section{XML-DB vs SQL-DB}
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison XML vs. SQL}
+\begin{tabular}{ll}
+\textbf{XML DB}         & \textbf{SQL DB}        \\ \cline{1-2}
+\multicolumn{1}{|l|}{Hierarchical} & \multicolumn{1}{l|}{Relational} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Fast access of nested structures} & \multicolumn{1}{l|}{Slow access of nested structures (join)} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Works well for aggregating data (1:n)} & \multicolumn{1}{l|}{Works well for interrelated data (n:m) } \\ \cline{1-2}
+\multicolumn{1}{|l|}{Working with files and XML-documents directly } & \multicolumn{1}{l|}{Working with abstract tables and tuples} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Focus on structure (XSD, DTD)} & \multicolumn{1}{l|}{Focus on consistency (ACID)} \\ \cline{1-2}
+\multicolumn{1}{|l|}{Ideal for web applications} & \multicolumn{1}{l|}{Ideal for banking applications} \\ \cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\section{XQuery}
+XQuery is a language for searching and manipulating data in XML Trees (XDM)\\
+XQuery expressions can access data over multiple documents and databases, and extract results very efficiently.\\
+XQuery is a FLWOR-expression (pronounced flower), with main syntax elements:\\FOR-LET-WHERE-ORDER-RETURN\\
+\\
+XQuery is a true superset of XPath, meaning that every single valid
+XPath expression is also a valid XQuery expression.\\
+Xquery is an extension to Xpath, allowing for nested loops with SQL- like elements such as where statements and order-by clauses.\\
+XPath lets you find XML elements by path expressions.\\
+XQuery, however, adds a couple of additional powerful constructs that allow you to do much more and let you manipulate or construct entire XML documents on the fly.\\
+  => return clause is essential for this feature, where new and arbitrary XML can be added and combined with results from the query
+
+\section{FLWOR and examples}
+
+\begin{itemize}
+  \item for: define variables (start name with \$) as FLWOR-Expression
+(normally just an Xpath-expression)
+  \item let: new variables for some (aggregated) subsets of the for-variables
+  \item where: some restrictions on/ between the for-variables and XPath- expressions starting from the for-variables
+  \item order: some variable with Xpath-expression (must be a singleton!)
+  \item return: a valid XML-structure constructed of constants and Xpath- expressions starting from variables. If constants and expressions are mixed: expressions must be set in curly brackets ({}) – otherwise they are not evaluated, but also taken as (constant) strings!!
+\end{itemize}
+Beispiel 1:
+\begin{lstlisting}[language=XML]
+for $v in //Vorlesung
+let $orderVar := $v/SWS
+where $v/../..[Name="Sokrates"]
+order by $orderVar descending
+return <Vorlesung>{$v/Titel}{$v/SWS}</Vorlesung>
+\end{lstlisting}
+returns:
+\begin{lstlisting}[language=XML]
+<Vorlesung><Titel>Ethik</Titel> <SWS>4</SWS></Vorlesung>
+<Vorlesung><Titel>Logik</Titel><SWS>4</SWS></Vorlesung>
+<Vorlesung><Titel>Maeeutik</Titel><SWS>2</SWS></Vorlesung>
+\end{lstlisting}
