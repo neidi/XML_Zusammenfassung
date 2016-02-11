@@ -109,3 +109,108 @@ How many such countries do exist? What is the corresponding XQuery (or XPath) Ex
   for $counting in count(//country[matches(@name,'^P','i')and @population>10000000])
   return $counting
 \end{lstlisting}
+
+
+1. In	which	room	is	Prof.	Curie?
+\begin{lstlisting}[language=XML]
+  for $r in //ProfessorIn
+  where $r/Name = "Curie"
+  return $r/Raum
+\end{lstlisting}
+
+2. Return	number	and	title	of	all	courses.
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung
+  return <Vorlesung> {$v/@VorlNr} {$v/Titel} </Vorlesung>
+\end{lstlisting}
+
+3. Return	title	and	number	of	credits	(SWS)	of	all	courses,	orderd	by	the	number	of	credits.
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung
+  order by ($v/SWS)[1] descending
+  return <Vorlesung> {$v/Titel} {$v/SWS} </Vorlesung>
+\end{lstlisting}
+
+4. Return	a	list	of	faculties	together	with	the	professors	that	belong	to	them.
+\begin{lstlisting}[language=XML]
+  for $f in //Fakultaet
+  return <Fakultaet> {$f/FakName} <Professoren> {$f/ProfessorIn/Name} </Professoren> </Fakultaet>
+\end{lstlisting}
+
+5. Return	a	list	of	the	titles	of	all	courses	of	the	professors	in	the	faculty	of	theology.
+\begin{lstlisting}[language=XML]
+  for $f in //Fakultaet
+  where $f/FakName = "Theologie"
+  return <Vorlesungen> {$f/ProfessorIn/Vorlesungen/Vorlesung/Titel} </Vorlesungen>
+\end{lstlisting}
+
+6. In	which	faculty	is	the	professor	in	room	309?
+\begin{lstlisting}[language=XML]
+  for $f in /Universitaet/Fakultaeten/Fakultaet,
+  $p in $f/ProfessorIn
+  where $p/Raum = "309"
+  return <Professor_in_Raum_309> {$p/Name} {$f/FakName} </Professor_in_Raum_309>
+\end{lstlisting}
+
+7. Return	a	list	of	all	professors	with	rank	C3.
+\begin{lstlisting}[language=XML]
+  for $p in /Universitaet/Fakultaeten/Fakultaet/ProfessorIn
+  where $p/Rang = "C3"
+  return <Professor_mit_Rang_C3> {$p/Name} </Professor_mit_Rang_C3>
+\end{lstlisting}
+
+8. Return	the	names	of the	professors	who	teach	a	course	that	is	attended	by	student	„Carnap“
+\begin{lstlisting}[language=XML]
+  for $p in //Vorlesung,$s in //Student[Name="Carnap"]
+  where contains($s/@hoert, $p/@VorlNr)
+  return <Professoren_von_Carnap> {$p/../../Name} </Professoren_von_Carnap>
+
+  ohne	Duplikate:
+  for $n in distinct-values(for $p in //Vorlesung,$s in //Student
+  where $s/Name = "Carnap" and contains($s/@hoert, $p/@VorlNr)
+  return $p/../../Name )
+  return <Professoren_von_Carnap>{$n} </Professoren_von_Carnap>
+\end{lstlisting}
+
+9. Return	the	numbers	of	all	courses	that	are	attended	by	Student	„29120“
+\begin{lstlisting}[language=XML]
+  for $s in //Student
+  where $s/@MatrNr=29120
+  return <Student> {$s/@hoert} {$s/Name} </Student>
+\end{lstlisting}
+
+10. Return	the	names	of	all	students	who	attend	a	course	taught	by “Russel”
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung,
+  $s in //Student
+  where contains ($s/@hoert, $v/@VorlNr)
+  and $v/../../Name = "Russel"
+  return <Hoerer> {$s/Name} </Hoerer>
+\end{lstlisting}
+
+11. Return	the	names	of	all	Professors	together	with	the	names	of	the	students	that	attend	one
+of	their	courses
+\begin{lstlisting}[language=XML]
+  for $p in //ProfessorIn,
+  $v in $p/Vorlesungen/Vorlesung,
+  $s in //Student
+  where contains($s/@hoert, $v/@VorlNr)
+  return  <ProfessorIn>  {$p/Name}  <Student>  {$s/Name}  </Student>  </ProfessorIn>
+\end{lstlisting}
+
+12. Return	the	names	of	all	students	together	with	a	list	of	the	courses	they	attend
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung,
+  $s in //Student
+  where contains($s/@hoert, $v/@VorlNr)
+  return <Student> {$s/Name} <Vorlesung> {$v/Titel} </Vorlesung> </Student>
+\end{lstlisting}
+
+13. Which	students	attend	the	course	“Grundzüge”	?
+\begin{lstlisting}[language=XML]
+  for $v in //Vorlesung,
+  $s in //Student
+  where contains($s/@hoert, $v/@VorlNr)
+  and $v/Titel = "Grundzuege"
+  return <Student> {$s/Name} </Student>
+\end{lstlisting}
