@@ -1,25 +1,41 @@
 \chapter{XML Principles}
 \section{Binary vs. Text Files}
+
+\subsection{Binary Files}
 Binärdateien sind Streams von Bits. Nur die kreierende Applikation der Datei weiss, was sie bedeuten und wie sie zu interpretieren sind.
 
-Vorteile:\\
+\begin{tabular}{|p{6cm}|p{6cm}|}
+\hline 
+Advantage & Disadvantage \\ 
+\hline 
 \begin{itemize}
-\item Concise representation
-\item small space (in Anbetracht der Harddisk)
-\item weniger Banbreite wenn transportiert über Netzwerke
-\end{itemize}
+\item concise representation 
+\item small space (e.g. hard disc)
+\item less bandwidth when transported across networks 
+\end{itemize} & 
+\begin{itemize}
+\item not readable by humans
+\item only some program know how to read them
+\end{itemize} \\
+\hline 
+\end{tabular} 
 
+\subsection{Text Files}
 Textdateien benutzen Standardencodings (z.B. UTF-8).\\
 
-Vorteile:
+\begin{tabular}{|p{6cm}|p{6cm}|}
+\hline 
+Advantage & Disadvantage \\ 
+\hline 
 \begin{itemize}
-\item Von Menschen und verschiedenen Applikationen lesbar
-\item Einfacheres Parsen
-\end{itemize}
-Nachteile:
+\item human and cross-application readable
+\item easier parsing (library functions)
+\end{itemize} & 
 \begin{itemize}
-\item Grösser als Binärdateien
-\end{itemize}
+\item  space consuming (metadata needs to be separated from content) 
+\end{itemize} \\ 
+\hline 
+\end{tabular} 
 
 \section{Metadaten}
 Metadaten sind Information über Informationen, wie z.B. Encoding, Version, Autor, Sprache, Repräsentation (Font, Farbe), Gerät.\\
