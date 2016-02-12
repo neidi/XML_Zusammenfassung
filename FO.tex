@@ -1,16 +1,30 @@
 \chapter{Formatting Objects}
 
 
+\chapter{Formatting Objects}
 
-\section{Control Questions}
+\section{Kontrollfragen}
 \begin{enumerate}
-\item Purpose of XSL-FO\\
-Daten in XML zu einem printbaren Medium konvertieren. Mit einem Prozessor kann es dann umgewandelt werden in z.B. PDF.
-\item 2-Phasen Modell\\
-1. Phase ist XSL-Transformation, 2.Phase ist FO-Transfromation
-\item Allgemeiner Aufbau\\
-Normalerweise 2 Sections: 1. definiert Layout der Seite, 2. definiert Inhalt in Blöcken und in welchem Flow er sich befindet. Der Flow speist dann die Seite.
-\item 
+\item What is the purpose of XSL-FO ?\\
+\textit{Generiert Outputformate (printmedien), ist ein Zwischen format.}
+\textit{Am weitesten Verbreitet ist FO im Publishingbereich. Über ein FOP wird ein Endformat aus einem XML generiert.
+}
+
+
+\item Explain the 2-phase process model.\\
+\textit{XML wird mit XSL zu FO verarbeitet und FO mittels FOP zu PDF (oder anderes Endformat)}
+
+\item Name typical output formats for FO documents.\\
+\textit{PDF, PCL, PS, TeX, RTF}
+
+\item Why do you think did the designers of XSL-FO choose a 2-phase model here.\\
+\textit{Die erste Phase trennt das Layout vom Inhalt und die zweite Phase den Inhalt vom Format}
+
+
+\item Describe the general build-up of FO documents, i.e. which components are required to be specified ?\\
+\textit{Wurzelknoten und zwei Sections (Inhalt in Blöcke zusammenzufassen und Layout)}
+
+\item How does the FO processor transform an FO document into the requested output document.\\
+\textit{Generiert Blöcke und lässt dann diese automatisch auffüllen}
+
 \end{enumerate}
-
-
