@@ -1,0 +1,43 @@
+\chapter{Processing XML with Java \& Stuff}
+\section{Control Question}
+\begin{enumerate}
+\item XML documents can be processed sequentially or by creating an in-memory representation. Name advantages, disadvantages and a framework implementation of each variant\\
+
+\begin{tabular}{|p{0.12\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.12\linewidth}|}
+\hline
+Technology & Advantages & Disadvantages & Framework\\
+\hline
+Sequential & Wenn Zeilennummer ausgegeben werden muss, Memorysparend, bei sehr grossen Files & Schwierig zu programmieren, nicht intuitiv & SAX\\
+\hline
+In-Memory & Gute OO-Unterstützung, XPath kann verwendet werden & Braucht ca. 4-fachen Speicher des Dokuments & LINQ, JDOM\\
+\hline
+\end{tabular}
+\item What is the different between pull and push processing ?\\
+\begin{itemize}
+\item push: Eventbasiert, Framework pusht in eigenen Eventhandler
+\item pull: Man "`holt"' sich die Daten aus dem Dokument, durchläuft es selbständig.
+\end{itemize}
+\item Explain the steps for processing an XML document with SAX.
+\begin{enumerate}
+\item Create a parser
+\item Give DefaultHandler extension to parser
+\item Start reader on XMLFile
+\end{enumerate}
+\item What is the difference between DOM, JDOM and XDOM ?\\
+DOM: Ursprüngliche Implementierung\\
+JDOM: Java Implementation, hat NICHTS mit DOM zu tun, ausser, dass es auch eine In-Memory Darstellung ist.\\
+XDOM: .NET Implementation
+\item Explain the steps for processing an XML document with JDOM.\\
+\begin{enumerate}
+\item XML Element in Parser füttern
+\item Parser spuckt Dokument aus
+\item Dokument kann traversiert werden
+\end{enumerate}
+\item Explain the steps for invoking an XSL transformation from Java.\\
+\begin{enumerate}
+\item XML Dok laden
+\item XSL Dok laden
+\item spezifizieren, wohin das Resultatdokument geschrieben wird.
+\end{enumerate}
+\end{enumerate}
+
