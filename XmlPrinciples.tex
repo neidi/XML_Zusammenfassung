@@ -87,8 +87,43 @@ Der XML-Hype ist so extrem geworden, dass viele Leute glauben, XML könne sogar 
 \subsection{Data-Centric Use of XML}
 Datenzentrische XNL Dokumente haben viele kleine Datenitems, die einer spezifischen Struktur folgen.
 
+Beispiel: Config File
+
+\begin{lstlisting}
+<folder name="C:">
+	<folder name="Windows">
+		<folder name="system32">
+			<files>
+				<file name="fsutil.exe" />
+				<file name="ftp.exe" />
+			</files>
+		</folder>
+	</folder>
+</folder>
+\end{lstlisting}
+
 \subsection{Document-Centric Use of XML}
 Diese XML-Dokumente enthalten grössere Mengen von Fliesstext ohne gross strukturierte Daten.
+
+Beispiel: XHTML webpage
+
+\begin{lstlisting}[language=XML]
+<ul><li><strong>Computer Science Fundamentals:</strong> This is an introductory
+course to computer science for students in various engineering disciplines. Topics
+include programming languages and programming fundamentals in Java, computer
+architectures, operating systems, elementary computer mathematics and Boolean logic,
+computer science in business, cloud computing, security, a hint of artificial
+intelligence, network technology and the internet, etc.</li><li><strong>Information
+Security:</strong> My part of this course focusses on selected (privacy-preserving)
+security protocols for electronic and internet voting, royalty cards, toll pricing,
+smartcard authentication (e.g. e-banking) and quantum cryptography. The second main
+topic is malware and hacking techniques including buffer overflows, identity theft
+(e.g. password cracking), denial-of-service attacks, SQL injection attacks, XSS and
+social engineering.</li><li><strong>Introduction to Object-Oriented Programming
+</strong>: This is an introductory course to Java, object-oriented paradigms and
+software design and development. It further includes some classes on elementary
+algorithmics with special focus on searching and sorting procedures.</li></ul>
+\end{lstlisting}
 
 \subsection{Hybride Verwendung von XML}
 Hybride XML-Dateien haben sowohl strukturierte, als auch unstrukturierte Daten.
