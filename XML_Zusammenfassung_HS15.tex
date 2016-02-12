@@ -4,6 +4,10 @@
 \usepackage{mathtools}
 \usepackage{float}
 
+\usepackage{etoolbox}
+\newtoggle{zusammenfassung}
+\toggletrue{zusammenfassung}
+
 
 % Codierung
 \usepackage{selinput}
@@ -135,10 +139,99 @@
 %\setcounter{chapter}{-1}
 
 
-\begin{document}
+\begin{document}	
 	
+\nottoggle{zusammenfassung}{
 \input{title}
+}
 
-\input{content}
+\chapter{XML Principles}
+
+\section{Binary vs. Text Files}
+
+\subsection{Binary Files} 
+\input{Chapters/Basics/binary_files.tex}
+
+\subsection{Text Files}
+\input{Chapters/Basics/text_files.tex}
+
+\section{Metadaten}
+\input{Chapters/Basics/metadaten.tex}
+
+\section{SGML - Der Vorgänger von XML}
+\input{Chapters/Basics/sgml.tex}
+
+\section{XML - Extensible Markup Language}
+\input{Chapters/Basics/xml.tex}
+
+\subsection{Advantages of XML}
+\input{Chapters/Basics/xml_advantages.tex}
+
+
+\section{Data-Centric vs Document-Centric Use of XML}
+\subsection{Data-Centric Use of XML}
+\input{Chapters/Basics/data_centric.tex}
+
+\subsection{Document-Centric Use of XML}
+\input{Chapters/Basics/document_centric.tex}
+
+\subsection{Hybride Verwendung von XML}
+\input{Chapters/Basics/hybrid_use.tex}
+
+\nottoggle{zusammenfassung}{
+\section{XML Anwendungen}
+\input{Chapters/Basics/xml_anwendung.tex}
+}
+\nottoggle{zusammenfassung}{
+\section{Intermezzo: JSON - Javascript Object Notation}
+\input{Chapters/Basics/json.tex}
+}
+\nottoggle{zusammenfassung}{
+\section{A non-religious Discussion of XML vs. JSON}
+\input{Chapters/Basics/xml_json.tex}
+}
+
+\nottoggle{zusammenfassung}{
+\section{CRDATA Sections}
+\input{Chapters/Basics/crdata.tex}
+}
+
+\section{Processing Instructions}
+\input{Chapters/Basics/processing_instructions.tex}
+
+\section{Well Formed XML and Error Handling}
+\input{Chapters/Basics/well_formed.tex}
+
+\section{Equal vs Equivalent}
+\input{Chapters/Basics/equal_equivalent.tex}
+
+\section{Control Questions A}
+\input{Chapters/Basics/qa_A.tex}
+
+\section{Control Questions B}
+\input{Chapters/Basics/qa_B.tex}
+
+
+\input{Namespaces}
+
+\input{Xpath}
+
+\input{XmlSchema}
+
+\input{Xslt}
+
+\section{XSLT Bootcamp Übung}
+\input{BootCamp/XSLT/xslt_bootcamp}
+
+\input{Xqueries}
+
+\input{FO}
+
+\input{SVG}
+
+
+%\input{Namespaces}
+
+\input{Pruefung}
 
 \end{document}
