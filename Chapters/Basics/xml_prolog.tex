@@ -1,0 +1,17 @@
+The prolog is optional, but if it does exist then it must come first.
+\begin{lstlisting}[language=XML]
+<?xml version="1.0" ?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-16" ?>
+<?xml version="1.0" encoding="EUC-JP" standalone="yes" ?>
+\end{lstlisting}
+
+Version is always either 1.0 or 1.1.
+
+XML 1.1 is not very widely implemented and is recommended for use only by those who need its unique features.)
+
+XML allows the use of any Unicode subset. But encodings other than UTF-8 and UTF-16 will not necessarily be recognized by every parser. 
+
+Chicken-and-Egg Problem: If an XML processor does not know the encoding, how can it read that my document uses e.g. UTF-16?
+
+Standalone applies only to documents that specify a DTD.
