@@ -313,3 +313,26 @@ Germany has positive trend\\...
 \begin{lstlisting}[language=XML]
 \end{lstlisting}
 \end{enumerate}
+
+\section {Bootcamp XPath}
+Geben sie mittels XPath eine Liste aller Spendenaktionen ohne Doppelnennungen aus, für welche 2013 Einzahlungen getätigt wurden, dh. generieren sie folgende Resultatemenge:\\
+Ueberschwemmungen Europa\\
+Syrienkonflikt\\
+Jeder Rappen zaehlt\\
+\begin{lstlisting}[language=XML]
+	distinct-values(//donation[@year="2013"])
+\end{lstlisting}
+Geben sie mittels XPath eine Liste aller Spenderdaten aus, die unter anderem einen Eintrag zu Gunsten Orkan Lothar enthalten.
+\begin{lstlisting}[language=XML]
+	//donation[text()="Orkan Lothar"]/..
+\end{lstlisting}
+Berechnen sie mittels XPath die Summer der im Jahr 2013 eingegangen Spenden.
+\begin{lstlisting}[language=XML]
+	sum(//donation[@year="2013"]/[@amount])
+\end{lstlisting}
+Berechnen sie mittels XPath die Anzahl Privatpersonen, welche im Jahr 2013 mindestens eine Spende getaetigt haben.
+\begin{lstlisting}[language=XML]
+	count(//donator[desc/text()="Privatperson" and donation/@year="2013"])
+	richtig richtige Loesung
+	count(//donation/../desc[text()="Privatperson"]/../donation[@year="2013"][1])
+\end{lstlisting}
